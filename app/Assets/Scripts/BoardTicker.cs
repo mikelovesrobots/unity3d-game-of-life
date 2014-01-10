@@ -24,7 +24,7 @@ public class BoardTicker : MonoBehaviour {
                 /* Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction. */
                 var neighborCount = board.LiveNeighborCount(x, y);
                 if (board.IsLiveCell(x, y)) {
-                    nextGeneration[x, y] = neighborCount == 2 || neighborCount == 3;
+                    nextGeneration[x, y] = (neighborCount == 2 || neighborCount == 3);
                 } else if (neighborCount == 3) {
                     nextGeneration[x, y] = true;
                 }

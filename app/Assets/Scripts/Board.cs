@@ -13,7 +13,7 @@ public class Board {
             for (int y = 0; y < SIZE; y++) {
                 var cell = CellFactory.Create(new Vector3(x - (SIZE / 2), y - (SIZE / 2), 0));
                 Matrix[x, y] = cell;
-                Matrix[x, y].SetActive(true);
+                Matrix[x, y].SetActive(Random.Range(1, 3) == 1);
             }
         }
     }
@@ -28,9 +28,9 @@ public class Board {
 
     public int LiveNeighborCount(int x, int y) {
         var count = 0;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                if (i != 0 && j != 0) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (!(i == 0 && j == 0)) {
                     var newX = x + i;
                     var newY = y + j;
                     if (IsOnBoard(newX, newY) && IsLiveCell(newX, newY)) {
