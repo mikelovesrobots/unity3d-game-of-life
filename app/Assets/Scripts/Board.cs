@@ -18,7 +18,32 @@ public class Board {
         }
     }
 
-    public bool HasCell(int x, int y) {
-        return Matrix[x, y] != null;
+    public GameObject Cell(int x, int y) {
+        return Matrix[x, y];
+    }
+
+    public bool IsLiveCell(int x, int y) {
+        return Matrix[x, y].activeSelf;
+    }
+
+    public int LiveNeighborCount(int x, int y) {
+        var count = 0;
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (i != 0 && j != 0) {
+                    var newX = x + i;
+                    var newY = y + j;
+                    if (IsOnBoard(newX, newY) && IsLiveCell(newX, newY)) {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+
+    private bool IsOnBoard(int x, int y) {
+        return x >= 0 && y >= 0 && x < SIZE && y < SIZE;
     }
 }
