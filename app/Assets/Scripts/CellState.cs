@@ -7,12 +7,13 @@ public class CellState : MonoBehaviour {
     public bool IsAlive;
 
     public void Instantiate(bool isAlive) {
-        Transition(isAlive);
+        transform.localScale = DestinationScale(isAlive);
+        IsAlive = isAlive;
     }
 
     public void Transition(bool isAlive) {
         if (isAlive != IsAlive) {
-            ScaleTo(isAlive ? Vector3.one : Vector3.zero);
+            ScaleTo(DestinationScale(isAlive));
         }
         IsAlive = isAlive;
     }
@@ -23,5 +24,9 @@ public class CellState : MonoBehaviour {
         options.Add("time", ANIMATION_TIME);
         options.Add("easetype", "easeinoutquad");
         iTween.ScaleTo(Sprite, options);
+    }
+
+    private Vector3 DestinationScale(bool isAlive) {
+        return isAlive ? Vector3.one : Vector3.zero;
     }
 }
