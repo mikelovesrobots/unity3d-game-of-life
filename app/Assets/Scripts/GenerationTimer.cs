@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GenerationTimer : MonoBehaviour {
-    private const float DELAY_BETWEEN_TICKS = 2f;
+    private const float DELAY_BETWEEN_TICKS = 1f;
     private BoardTicker boardTicker;
 
     public void Initialize(BoardTicker boardTicker) {

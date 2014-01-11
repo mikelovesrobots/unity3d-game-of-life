@@ -3,10 +3,13 @@ using System.Collections;
 
 public class CellInitializer : MonoBehaviour {
     public Animator Animator;
-    void Start () {
+    public CellState CellState;
+
+    public void Initialize(bool isAlive) {
+        CellState.Instantiate(isAlive);
         StartCoroutine(WaitThenAnimate());
     }
-	
+    
     private IEnumerator WaitThenAnimate() {
         yield return new WaitForSeconds(RandomWait);
         Animator.enabled = true;

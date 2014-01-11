@@ -37,7 +37,7 @@ public class BoardTicker : MonoBehaviour {
     private void SyncBoard(bool[,] nextGeneration) {
         for (int x = 0; x < Board.SIZE; x++) {
             for (int y = 0; y < Board.SIZE; y++) {
-                board.Cell(x, y).SetActive(nextGeneration[x, y]);
+                board.Cell(x, y).Transition(nextGeneration[x, y]);
             }
         }
     }
